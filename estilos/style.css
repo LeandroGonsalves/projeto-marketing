@@ -242,3 +242,11 @@ footer#rodape {
 footer#rodape p {
     text-align: center;
 }
+
+figure.video-01 video {
+    width: 100%;
+}
+
+figure.video-02 video {
+    width: 100%;
+}
