@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tudo Sobre Google Glass</title>
     <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/form.css">
 </head>
 <script language="javascript" src="javascript/funcoes.js"></script>
+<script>
+    function calc_total() {
+        var qtd = parseInt(document.getElementById('cqtd').value);
+        tot = qtd * 1500;
+        document.getElementById('ctot').value = tot;
+    }
+</script>
 <body>
     <div id="interface">
         <header id="cabecalho">
@@ -30,41 +38,123 @@
 
         </header>
 
-Fale Conosco > Contato
-Formulário de Contato
-por Gustavo Guanabara
-Atualizado em 01/Maio/2013
+        <section id="corpo-full">
+            <article id="noticia-principal">
+            <header id="cabecalho-artigo">
+                <hgroup>
+                    <h3>Fale Conosco > Contato</h3>
+                    <h1>Formulário de Contato</h1>
+                    <h2>por Leandro Gonsalves</h2>
+                    <h3 class="direita">Atualizado em junho/2023</h3>
+                </hgroup>
+            </header>
 
-Identificação do Usuário
-    Nome:
-    Senha:
-    E-mail:
-    Sexo:
-        - Masculino
-        - Feminino
-    Data de Nascimento:
+            <form method="post" id="fcontato" action="mailto:leandrogonsalvespsa@gmail.com" oninput="calc_total();">
 
-Endereço do Usuário
-    Logradouro:
-    Número:
-    Estado:
-    Cidade:
+                <fieldset id="usuario"><legend>Identificação do Usuário</legend>
+                    <p>
+                        <label for="cnome">Nome</label> <input type="text" name="tnome" id="cnome" size="20" placeholder="Nome Completo">
+                    </p>
 
-Mensagem do Usuário
-    Grau de Urgência:
-    Mensagem:
+                    <p>
+                        <label for="csenha">Senha</label> <input type="password" name="tsenha" id="csenha" size="8" maxlength="8" placeholder="Sua Senha">
+                    </p>
 
-Quero um Google Glass
-    Gostaria de adquirir um Google Glass quando disponível
-    Cor:
-    Quantidade:
-    Preço Total: R$
+                    <p>
+                        <label for="cmail">E-mail</label> <input type="email" name="tmail" id="cmail" size="20" placeholder="Seu E-Mail">
+                    </p>
 
+                    <fieldset id="sexo"><legend>Sexo</legend>
+                        <input type="radio" name="tsexo" id="cmasc" checked><label for="cmasc">Masculino</label><br>
+                        <input type="radio" name="tsexo" id="cfem"> <label for="cfem">Feminino</label>
+                    </fieldset>
+                    <p>
+                        <label for="cnasc">Data de Nascimento</label><input type="date" name="tnasc" id="cnasc">
+                    </p>
+                </fieldset>
 
-[BOTÃO ENVIAR]
+                <fieldset id="endereco"><legend>Endereço do Usuário</legend>
+                    <p><label for="crua">Logradouro</label> <input type="text" name="trua" id="crua" size="13" maxlength="80" placeholder="Rua, Avenida, Travessa..."></p>
+                    <p><label for="cnum">Número</label> <input type="number" name="tnum" id="cnum" min="0" max="999999"></p>
+                    <p><label for="cest">Estado </label><select name="test" id="cest">
+                        <optgroup label="Região Sudeste">
+                            <option value="SP">São Paulo</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="ES">Espirito Santo</option>
+                        </optgroup>
+
+                        <optgroup label="Região Nordeste">
+                            <option value="MA">Maranhão</option>
+                            <option value="PI">Piauí</option>
+                            <option value="CE">Ceará</option>
+                            <option value="RN">Rio GRande do Norte</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="SE">Segipe</option>
+                            <option value="BA">Bahia</option>
+                        </optgroup>
+                        
+                        <optgroup label="Região Norte">
+                            <option value="AM">Amazonas</option>
+                            <option value="PA">Pará</option>
+                            <option value="AC">Acre</option>
+                            <option value="RR">Roraima</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="AP">Amapá</option>
+                            <option value="TO">Tocantins</option>
+                       </optgroup>
+
+                    </select></p>
+                    <p><label for="ccid">Cidade </label><input type="text" name="tcid" id="ccid" maxlength="40" size="20" placeholder="Sua Cidade" list="cidades"></p>
+                    <datalist id="cidades">
+                        <option value="São Paulo"></option>
+                        <option value="Campinas"></option>
+                        <option value="Bauru"></option>
+                        <option value="Socorro"></option>
+                    </datalist>
+
+                </fieldset>
+
+                <fieldset id="mensagem"><legend>Mensagem do Usuário</legend>
+
+                    <p><label for="curg">Grau de Urgência - </label>
+                    Min<input type="range" name="turg" id="curg" min="0" max="10" step="1">Max</p>
+
+                    <p><label for="cmsg">Mensagem</label>
+                    <textarea name="tmsg" id="cmsg" cols="30" rows="10" placeholder="Deixe aqui sua mensagem"></textarea></p>
+                </fieldset>
+
+                <fieldset id="pedido">
+                    <legend>Quero um Google Glass</legend>
+                    <p>
+                        <input type="checkbox" name="tped" id="cped" checked><label for="cped">Gostaria de adquirir um Google Glass quando disponível</label>
+                    </p>
+
+                    <p>
+                        <input type="color" name="tcor" id="ccor" value="#0000ff"><label for="ccor">Cor</label>
+                    </p>
+
+                    <p>
+                        <label for="cqtd">Quantidade</label>
+                        <input type="number" name="tqtd" id="cqtd" min="0" max="9999">
+                    </p>
+
+                    <p>
+                        <label for="ctot">Preço Total: R$</label>
+                        <input type="text" name="ttot" id="ctot" placeholder="Total a pagar" readonly>
+                    </p>
+                    
+                </fieldset>
+                
+                <input type="image" name="tenviar" src="imagens/botao-enviar.png">
+            </form>
+            </article>
+        </section>
 
 <footer id="rodape">
-    <p>Copyright &copy; 2023 - by Leandro Gonsalves <br> <a href="https://github.com/LeandroGonsalves" target="_blank">Github</a> <a href="https://www.linkedin.com/in/leandro-gonsalves/" target="_blank">Linkedin</a></p>
+    <p>Copyright &copy; 2023 - by Leandro Gonsalves <br> <a href="https://github.com/LeandroGonsalves" target="_blank">Github |</a> <a href="https://www.linkedin.com/in/leandro-gonsalves/" target="_blank">Linkedin</a></p>
 </footer>
 </div>
 </body>
